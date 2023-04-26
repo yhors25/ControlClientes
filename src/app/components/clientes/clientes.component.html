@@ -1,0 +1,122 @@
+<section id="actions" class="py-4 mb-4 gb-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#clienteModal">
+                    <i class="fa-solid fa-plus"></i>&nbsp;Agregar Cliente
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Listado de Clientes</h4>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Saldo</th>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cliente of clientes; let i=index">
+                                <td>{{i+1}}</td>
+                                <td>{{cliente.nombre}} {{cliente.apellido}}</td>
+                                <td>{{cliente.saldo | currency:'cop':'$'}}</td>
+                                <td>
+                                    <a [routerLink]="['/cliente/editar',i]" class="btn btn-secondary">
+                                        <i class="fa-solid fa-pen-to-square"></i>&nbsp;Editar
+                                    </a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#clienteModal"
+                                        (click)="editarCliente(cliente, i)">
+                                        <i class="fa-solid fa-pen-to-square"></i>&nbsp;EditarModal
+                                    </a>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card text-center bg-danger text-white mb-3">
+                    <h3>Saldo total</h3>
+                    <h4 class="display-4">
+                        {{getSaldoTotal()|currency:"cop":"$"}}
+                    </h4>
+                </div>
+
+                <div class="card text-center bg-success text-white mb-3">
+                    <h3>Saldo total</h3>
+                    <h4 class="display-4">
+                        <i class="fa-solid fa-users"></i>&nbsp;{{clientes.length}}
+                    </h4>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="clienteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-info text-white">
+                <h5 class="modal-title">{{accion | uppercase}} CLIENTE</h5>
+                <button #btnClienteClose type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+
+            <form [formGroup]="form" (ngSubmit)="guardarCliente()">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input formControlName="nombre" [class.is-valid]="this.form.get('nombre')?.valid"
+                            [class.is-invalid]="this.form.get('nombre')?.invalid && this.form.get('nombre')?.touched"
+                            type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Apellido</label>
+                        <input formControlName="apellido" [class.is-valid]="this.form.get('apellido')?.valid"
+                            [class.is-invalid]="this.form.get('apellido')?.invalid && this.form.get('apellido')?.touched"
+                            type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Correo</label>
+                        <input formControlName="email" [class.is-valid]="this.form.get('email')?.valid"
+                            [class.is-invalid]="this.form.get('email')?.invalid && this.form.get('email')?.touched"
+                            type="email" class="form-control" placeholder="name@example.com">
+                        <div [hidden]="!this.form.get('email')?.invalid" class="invalid-feedback">
+                            El correo no pertenece a los dominios aceptados (google|facebook|yahoo)
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Saldo</label>
+                        <input formControlName="saldo" [class.is-valid]="this.form.get('saldo')?.valid"
+                            [class.is-invalid]="this.form.get('saldo')?.invalid && this.form.get('saldo')?.touched"
+                            type="number" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button (click)="this.form.reset()" type="button" class="btn btn-secondary">Limpiar</button>
+                    <button [disabled]="this.form.invalid" type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

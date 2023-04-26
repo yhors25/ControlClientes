@@ -1,0 +1,91 @@
+<header id="main-header" class="py-2 bg-info text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>
+                    <i class="fa-solid fa-user"></i>&nbsp;Editar Cliente
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<form [formGroup]="form" (ngSubmit)="guardarCliente()">
+    <section id="actions" class="py-4 mb-4 gb-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="d-grid gap-2">
+                        <a routerLink="/" class="btn btn-light ">
+                            <i class="fa-solid fa-arrow-left"></i>&nbsp;Regresar a Inicio
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="d-grid gap-2">
+                        <button [disabled]="this.form.invalid" type="submit" class="btn btn-success">
+                            <i class="fa-solid fa-floppy-disk"></i>&nbsp;Guardar Cliente
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="d-grid gap-2">
+                        <a (click)="this.form.reset()" class="btn btn-warning" disabled>
+                            <i class="fa-solid fa-eraser"></i>&nbsp;limpiar
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="d-grid gap-2">
+                        <a class="btn btn-danger" (click)="eliminarCliente()">
+                            <i class="fa-solid fa-trash"></i>&nbsp;Eliminar Cliente
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Editar Cliente</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">Nombre</label>
+                                <input formControlName="nombre" [class.is-valid]="this.form.get('nombre')?.valid"
+                                    [class.is-invalid]="this.form.get('nombre')?.invalid && this.form.get('nombre')?.touched"
+                                    type="text" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Apellido</label>
+                                <input formControlName="apellido" [class.is-valid]="this.form.get('apellido')?.valid"
+                                    [class.is-invalid]="this.form.get('apellido')?.invalid && this.form.get('apellido')?.touched"
+                                    type="text" class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Correo</label>
+                                <input formControlName="email" [class.is-valid]="this.form.get('email')?.valid"
+                                    [class.is-invalid]="this.form.get('email')?.invalid && this.form.get('email')?.touched"
+                                    type="email" class="form-control" placeholder="name@example.com">
+                                <div [hidden]="!this.form.get('email')?.invalid" class="invalid-feedback">
+                                    El correo no pertenece a los dominios aceptados (google|facebook|yahoo)
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Saldo</label>
+                                <input formControlName="saldo" [class.is-valid]="this.form.get('saldo')?.valid"
+                                    [class.is-invalid]="this.form.get('saldo')?.invalid && this.form.get('saldo')?.touched"
+                                    type="number" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+    <div class="container">
+        <a routerlink="/" class="navbar-brand">Control-Clientes</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/">Inicio</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-user"></i>&nbsp;Bienvenido
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDarkDropdownMenuLink">
+                    <a class="dropdown-item" routerLink="/configuracion">
+                        <i class="fa-solid fa-gear"></i>&nbsp;Configuracion
+                    </a>
+                    <a class="dropdown-item" routerLink="#">Another action</a>
+                    <!-- <a class="dropdown-item" routerLink="#">Something else here</a> -->
+                </ul>
+            </li>
+        </ul>
+
+
+    </div>
+</nav>
