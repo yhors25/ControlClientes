@@ -29,22 +29,28 @@ export class ClienteService {
 
   private clientes: Cliente[] = [
     {
-      nombre: 'juan',
-      apellido: 'peres',
-      email: 'jp@gmail.com',
-      saldo: 100,
+      nombre: 'Yhors Brayan',
+      apellido: 'X',
+      email: 'yhors@google.com',
+      saldo: 500,
+    },
+    {
+      nombre: 'Monica',
+      apellido: 'P',
+      email: 'moni@google.com',
+      saldo: 365,
     },
     {
       nombre: 'juan',
       apellido: 'peres',
-      email: 'jp@gmail.com',
-      saldo: 100,
+      email: 'jp@facebook.com',
+      saldo: 450,
     },
     {
-      nombre: 'juan',
+      nombre: 'Julian',
       apellido: 'peres',
-      email: 'jp@gmail.com',
-      saldo: 100,
+      email: 'jjp@facebook.com',
+      saldo: 702,
     },
   ];
 }

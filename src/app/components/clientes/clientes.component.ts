@@ -29,11 +29,11 @@ export class ClientesComponent {
     this.form = this.fb.group({
       nombre: [
         '',
-        [Validators.required, Validators.minLength(3), Validators.maxLength(5)],
+        [Validators.required, Validators.minLength(3), Validators.maxLength(20)],
       ],
       apellido: [
         '',
-        [Validators.required, Validators.minLength(3), Validators.maxLength(5)],
+        [Validators.required, Validators.minLength(3), Validators.maxLength(20)],
       ],
       email: [
         '',
@@ -46,7 +46,7 @@ export class ClientesComponent {
       ],
       saldo: [
         '',
-        [Validators.required, Validators.pattern('^[0-9]+.?[0-9]*$')],
+        [Validators.required, Validators.pattern('^[+-]?([0-9]*[.])?[0-9]*$')],
       ],
     });
   }
@@ -62,7 +62,7 @@ export class ClientesComponent {
   }
 
   guardarCliente() {
-    console.warn(this.form.value);
+    // console.warn(this.form.value);
     let nuevoClinete: Cliente = this.form.value;
 
     if (this.id) {
@@ -113,6 +113,14 @@ export class ClientesComponent {
   }
 
   private cerrarModal() {
+    this.form.reset();
     this.btnClienteClose.nativeElement.click();
   }
+
+  btnCerrarModal() {
+    this.accion = 'agregar';
+    this.form.reset();
+    this.btnClienteClose.nativeElement.click();
+  }
+
 }

@@ -29,11 +29,11 @@ export class EditarClienteComponent {
     this.form = this.fb.group({
       nombre: [
         this.cliente.nombre,
-        [Validators.required, Validators.minLength(3), Validators.maxLength(5)],
+        [Validators.required, Validators.minLength(3), Validators.maxLength(20)],
       ],
       apellido: [
         this.cliente.apellido,
-        [Validators.required, Validators.minLength(3), Validators.maxLength(5)],
+        [Validators.required, Validators.minLength(3), Validators.maxLength(20)],
       ],
       email: [
         this.cliente.email,
@@ -46,7 +46,7 @@ export class EditarClienteComponent {
       ],
       saldo: [
         this.cliente.saldo,
-        [Validators.required, Validators.pattern('^[0-9]+.?[0-9]*$')],
+        [Validators.required, Validators.pattern('^[+-]?([0-9]*[.])?[0-9]*$')],
       ],
     });
   }

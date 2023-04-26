@@ -34,7 +34,7 @@
                                 <td>{{cliente.nombre}} {{cliente.apellido}}</td>
                                 <td>{{cliente.saldo | currency:'cop':'$'}}</td>
                                 <td>
-                                    <a [routerLink]="['/cliente/editar',i]" class="btn btn-secondary">
+                                    <a [routerLink]="['/cliente/editar',i]" class="btn btn-secondary" [hidden]="i==0">
                                         <i class="fa-solid fa-pen-to-square"></i>&nbsp;Editar
                                     </a>
                                 </td>
@@ -78,7 +78,7 @@
             <div class="modal-header bg-info text-white">
                 <h5 class="modal-title">{{accion | uppercase}} CLIENTE</h5>
                 <button #btnClienteClose type="button" class="btn-close" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
+                    aria-label="Close" (click)="btnCerrarModal()"></button>
             </div>
 
             <form [formGroup]="form" (ngSubmit)="guardarCliente()">
@@ -101,7 +101,7 @@
                             [class.is-invalid]="this.form.get('email')?.invalid && this.form.get('email')?.touched"
                             type="email" class="form-control" placeholder="name@example.com">
                         <div [hidden]="!this.form.get('email')?.invalid" class="invalid-feedback">
-                            El correo no pertenece a los dominios aceptados (google|facebook|yahoo)
+                            El correo no pertenece a los dominios aceptados (google/facebook/yahoo)
                         </div>
                     </div>
                     <div class="mb-3">

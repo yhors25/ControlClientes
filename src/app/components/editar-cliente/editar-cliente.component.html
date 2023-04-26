@@ -11,14 +11,58 @@
 </header>
 
 <form [formGroup]="form" (ngSubmit)="guardarCliente()">
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h4>Editar Cliente</h4>
+            </div>
+            <div class="card-body">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-4 mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input formControlName="nombre" [class.is-valid]="this.form.get('nombre')?.valid"
+                                [class.is-invalid]="this.form.get('nombre')?.invalid && this.form.get('nombre')?.touched"
+                                type="text" class="form-control">
+                        </div>
+                        <div class="col-4 mb-3">
+                            <label class="form-label">Apellido</label>
+                            <input formControlName="apellido" [class.is-valid]="this.form.get('apellido')?.valid"
+                                [class.is-invalid]="this.form.get('apellido')?.invalid && this.form.get('apellido')?.touched"
+                                type="text" class="form-control">
+                        </div>
+                        <div class="col-4 mb-3">
+                            <label class="form-label">Saldo</label>
+                            <input formControlName="saldo" [class.is-valid]="this.form.get('saldo')?.valid"
+                                [class.is-invalid]="this.form.get('saldo')?.invalid && this.form.get('saldo')?.touched"
+                                type="number" class="form-control">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Correo</label>
+                        <input formControlName="email" [class.is-valid]="this.form.get('email')?.valid"
+                            [class.is-invalid]="this.form.get('email')?.invalid && this.form.get('email')?.touched"
+                            type="email" class="form-control" placeholder="name@example.com">
+                        <div [hidden]="!this.form.get('email')?.invalid" class="invalid-feedback">
+                            El correo no pertenece a los dominios aceptados (google/facebook/yahoo)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <section id="actions" class="py-4 mb-4 gb-light">
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
                     <div class="d-grid gap-2">
-                        <a routerLink="/" class="btn btn-light ">
+                        <button routerLink="/" type="submit" class="btn btn-secondary">
                             <i class="fa-solid fa-arrow-left"></i>&nbsp;Regresar a Inicio
-                        </a>
+                        </button>
+
+                        <!-- <a routerLink="/" class="btn btn-light ">
+                            <i class="fa-solid fa-arrow-left"></i>&nbsp;Regresar a Inicio
+                        </a> -->
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -45,47 +89,4 @@
             </div>
         </div>
     </section>
-
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Editar Cliente</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label class="form-label">Nombre</label>
-                                <input formControlName="nombre" [class.is-valid]="this.form.get('nombre')?.valid"
-                                    [class.is-invalid]="this.form.get('nombre')?.invalid && this.form.get('nombre')?.touched"
-                                    type="text" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Apellido</label>
-                                <input formControlName="apellido" [class.is-valid]="this.form.get('apellido')?.valid"
-                                    [class.is-invalid]="this.form.get('apellido')?.invalid && this.form.get('apellido')?.touched"
-                                    type="text" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Correo</label>
-                                <input formControlName="email" [class.is-valid]="this.form.get('email')?.valid"
-                                    [class.is-invalid]="this.form.get('email')?.invalid && this.form.get('email')?.touched"
-                                    type="email" class="form-control" placeholder="name@example.com">
-                                <div [hidden]="!this.form.get('email')?.invalid" class="invalid-feedback">
-                                    El correo no pertenece a los dominios aceptados (google|facebook|yahoo)
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Saldo</label>
-                                <input formControlName="saldo" [class.is-valid]="this.form.get('saldo')?.valid"
-                                    [class.is-invalid]="this.form.get('saldo')?.invalid && this.form.get('saldo')?.touched"
-                                    type="number" class="form-control">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </form>
